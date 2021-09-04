@@ -21,7 +21,7 @@ async def on_message(message):
     if message.content.startswith('$salut'):
        await message.channel.send('hey, boss!')
 
-'''@Bot.event
+@Bot.listen()
 async def on_message(message):
     if message.content.startswith('$greet'):
         channel = message.channel
@@ -31,7 +31,7 @@ async def on_message(message):
             return m.content == 'hello' and m.channel == channel
 
         msg = await Bot.wait_for('message', check=check)
-        await channel.send('Hello {.author} on channel {.channel}!'.format(msg, msg))'''
+        await channel.send('Hello {.author} on channel {.channel}!'.format(msg, msg))
 
 token = ""
 with open("token") as file:
