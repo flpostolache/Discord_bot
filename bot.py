@@ -4,37 +4,41 @@ from discord.ext import commands
 
 from music_cog import music_cog
 
-Bot = commands.Bot(command_prefix='/')
+Bot = commands.Bot(command_prefix="/")
 
 Bot.add_cog(music_cog(Bot))
 
+
 @Bot.command()
 async def scrie(ctx, *args):
-        m_args = " ".join(args)
-        await ctx.send(m_args)
+    m_args = " ".join(args)
+    await ctx.send(m_args)
+
 
 @Bot.listen()
 async def on_message(message):
     if message.author == Bot.user:
         return
-    
-    if message.content.startswith('$salut'):
-       await message.channel.send('hey, boss!')
+
+    if message.content.startswith("$salut"):
+        await message.channel.send("hey, boss!")
+
 
 @Bot.listen()
 async def on_message(message):
-    if message.content.startswith('$greet'):
+    if message.content.startswith("$greet"):
         channel = message.channel
-        await channel.send('Say hello!')
+        await channel.send("Say hello!")
 
         def check(m):
-            return m.content == 'hello' and m.channel == channel
+            return m.content == "hello" and m.channel == channel
 
-        msg = await Bot.wait_for('message', check=check)
-        await channel.send('Hello {.author} on channel {.channel}!'.format(msg, msg))
+        msg = await Bot.wait_for("message", check=check)
+        await channel.send("Hello {.author} on channel {.channel}!".format(msg, msg))
+
 
 token = ""
-with open("token") as file:
+with open("token.txt") as file:
     token = file.read()
 
 
